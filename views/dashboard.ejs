@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <h1 class="logo">
+                <%= username %>
+            </h1>
+        </div>
+        <div class="list">
+            <ul class="list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="/logout">Log-out</a></li>
+        </div>
+    </div>
+
+    <form action="/dashboard/update" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="titles" name="titles">
+        <label for="description">Description:</label>
+        <input type="text" id="descriptions" name="descriptions">
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <!-- Displaying titles -->
+    <!-- <% if (titles && descriptions && titles.length > 0 && descriptions.length > 0) { %>
+        <% for (let i = 0; i < titles.length && i < descriptions.length; i++) { %>
+            <p>Title
+                <%= i + 1 %>:
+                    <%= titles[i] %>
+            </p><br>
+            <p>Description
+                <%= i + 1 %>:
+                    <%= descriptions[i] %>
+            </p>
+            <% } %>
+                <% } else { %>
+                    <p>No titles available</p>
+                    <% } %> -->
+
+    <div class="outputData">
+        <% if (titles && descriptions && titles.length > 0 && descriptions.length > 0) { %>
+            <% for (let i = 0; i < titles.length && i < descriptions.length; i++) { %>
+                <label for="title<%= i %>">Title:</label>
+                <input type="text" id="title<%= i %>" name="titles" value="<%= titles[i] %>"><br>
+                <label for="description<%= i %>">Description <%= i + 1 %>:</label>
+                <input type="text" id="description<%= i %>" name="descriptions" value="<%= descriptions[i] %>"><br>
+                <% } %>
+                    <% } else { %>
+                        <p>No title and description available</p>
+                        <% } %>
+
+    </div>
+
+
+
+    <form action="/dashboard/delete/all-titles-and-descriptions" method="post">
+        <button type="submit">Delete All Titles and Descriptions</button>
+        <br>
+        <button><a href="/logout">Log out</a></button>
+    </form>
+</body>
+
+</html>
